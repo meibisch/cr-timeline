@@ -67,12 +67,12 @@ function buildCard(release, isMobile) {
   // Tags
   const tags = [];
   if (release.debut) tags.push({ cls: 'debut', label: 'Debut' });
-  if (release.collab) tags.push({ cls: 'collab', label: `feat. ${release.collab}` });
+  if (release.collab) tags.push({ cls: 'collab', label: release.collab_label || `feat. ${release.collab}` });
   const coverSongTags = tracks.filter(t => t.coverSong).map(t => t.coverSong);
   // Also check top-level coverSong
   if (release.coverSong) coverSongTags.push(release.coverSong);
   coverSongTags.forEach(cs => {
-    tags.push({ cls: 'cover-song', label: `Cover: ${cs.original}` });
+    tags.push({ cls: 'cover-song', label: 'Cover' });
   });
 
   // Track tabs HTML (multi-track)
@@ -370,6 +370,7 @@ function initKeyboard(releases) {
 // ── Init ──────────────────────────────────────────────────────────────────────
 function init() {
   const { releases } = RELEASES_DATA;
+  releases.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   renderTimeline(releases);
   initScrollReveal();

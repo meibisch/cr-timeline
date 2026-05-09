@@ -303,6 +303,7 @@ const RELEASES_DATA = {
       "type": "single",
       "label": "Məṭaṭrōn / TSR",
       "collab": "Soren / Absence of Field",
+      "collab_label": "with Absence of Field",
       "coverHash": "5b27ca35ef00db933c3198a2",
       "tracks": [
         {
