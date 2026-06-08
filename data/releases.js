@@ -3,12 +3,22 @@ const RELEASES_DATA = {
   "artistId": "61qSGQsnPa7ojcI75q32KX",
   "releases": [
     {
+      "id": "shades-of-june",
+      "title": "Shades of June",
+      "date": "2026-05-29",
+      "type": "single",
+      "label": "TSR",
+      "newest": true,
+      "tracks": [
+        { "title": "Shades of June", "spotifyId": "10lEGi5cFKnbk0cnvB0dfz" }
+      ]
+    },
+    {
       "id": "the-weight-of-it-all",
       "title": "The Weight of It All",
       "date": "2026-04-10",
       "type": "single",
       "label": "SVR/TSR",
-      "newest": true,
       "coverHash": "1416891b915fdddeb3b3728e",
       "tracks": [
         {
