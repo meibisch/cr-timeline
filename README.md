@@ -1,61 +1,40 @@
 # Chasing Reverbs – Release Timeline
 
-Static GitHub Pages site. Deployed at `timeline.chasingreverbs.com`.
+Static site deployed via Cloudflare Pages at `timeline.chasingreverbs.com`.
 
 ## Local preview
 
 ```bash
-cd "/Volumes/T7/Chasing Reverbs/chasing-reverbs-timeline"
+cd "/Volumes/T7/Chasing Reverbs/Website/Timeline"
 python3 -m http.server 8080
 # Open: http://localhost:8080
 ```
 
-## Deploy to GitHub Pages
-
-1. Create a new GitHub repo (e.g. `chasing-reverbs-timeline`)
-2. Push this directory as the repo root:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial release timeline"
-   git remote add origin https://github.com/YOUR_USER/chasing-reverbs-timeline.git
-   git push -u origin main
-   ```
-3. In repo Settings → Pages → Source: **Deploy from branch** → `main` / `(root)`
-4. Add a CNAME DNS record at your registrar:
-   - Type: `CNAME`
-   - Name: `timeline`
-   - Value: `YOUR_USER.github.io`
-5. GitHub Pages will pick up `CNAME` automatically and serve on `timeline.chasingreverbs.com`
-
 ## Adding a new release
 
-1. Add an entry to `data/releases.json` at the **top** of the `releases` array (newest first):
-   ```json
+1. Add an entry to `data/releases.js` at the **top** of the `releases` array (newest first):
+   ```js
    {
-     "id": "your-release-id",
+     "id": "your-release-id",        // kebab-case, used as cover filename
      "title": "Release Title",
      "date": "YYYY-MM-DD",
-     "type": "single",
-     "label": "SVR/TSR",
-     "coverHash": "SPOTIFY_COVER_HASH",
+     "type": "single",               // see types below
+     "label": "TSR",
+     "newest": true,                 // move from previous latest release
      "tracks": [
        { "title": "Track Title", "spotifyId": "SPOTIFY_TRACK_ID" }
      ]
    }
    ```
-2. Download the cover image:
+2. Download the cover (640×640) from Spotify oEmbed and save as `covers/<id>.jpg`:
    ```bash
-   curl -o "covers/HASH.jpg" "https://i.scdn.co/image/ab67616d0000b273HASH"
+   # Get image URL:
+   curl -s "https://open.spotify.com/oembed?url=spotify%3Aalbum%3AALBUM_ID" | python3 -c "import sys,json; print(json.load(sys.stdin)['thumbnail_url'].replace('00001e02','0000b273'))"
+   # Download (replace URL and id):
+   curl -o "covers/your-release-id.jpg" "https://..."
    ```
-3. Move `"newest": true` from the previous latest release to this one.
-4. Commit and push.
-
-### Finding the Spotify cover hash
-
-Open Spotify Web → right-click cover → "Copy image address". The URL looks like:
-`https://i.scdn.co/image/ab67616d0000b273XXXXXXXXXXXXXXXXXXXXXXXX`
-The 40-char hex after `ab67616d0000b273` is the hash.
+3. Remove `"newest": true` from the previous latest release in `releases.js`.
+4. Commit and push — Cloudflare Pages deploys automatically.
 
 ### Release types
 
@@ -72,20 +51,21 @@ The 40-char hex after `ab67616d0000b273` is the hash.
 |-------|-------------|
 | `newest: true` | Shows accent border + "Latest" badge |
 | `debut: true` | Shows "Debut" tag |
+| `spotifyId` | Album-level Spotify ID (for albums/EPs without a primary track) |
+| `fallbackAlbumId` | Spotify album ID to use if no track ID available |
 | `collab` | Shows collaboration tag |
 | `coverSong` | `{ "original": "Song", "artist": "Artist" }` |
-| `fallbackAlbumId` | Spotify album ID to use if no track ID available |
 
 ## File structure
 
 ```
-chasing-reverbs-timeline/
+cr-timeline/
 ├── index.html          ← Shell
-├── timeline.css        ← CR Style Guide v1.1
+├── timeline.css        ← Styles
 ├── timeline.js         ← All interactivity (vanilla ES6+)
-├── CNAME               ← GitHub Pages custom domain
+├── CNAME               ← Custom domain
 ├── data/
-│   └── releases.json   ← All release data
+│   └── releases.js     ← Single source of truth for all release data
 └── covers/
-    └── *.jpg           ← 640×640 Spotify CDN covers (named by hash)
+    └── <id>.jpg        ← 640×640 cover images, named by release id
 ```
