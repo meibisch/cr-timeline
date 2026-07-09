@@ -3,12 +3,23 @@ const RELEASES_DATA = {
   "artistId": "61qSGQsnPa7ojcI75q32KX",
   "releases": [
     {
+      "id": "light-years-away",
+      "title": "Light Years Away",
+      "date": "2026-07-10",
+      "type": "single",
+      "label": "SVR/TSR",
+      "newest": true,
+      "coverHash": "412852c80aa2c7d2eedd45ff",
+      "tracks": [
+        { "title": "Light Years Away", "spotifyId": "2WDxHsW5OqJEyEC5ZfjJQG" }
+      ]
+    },
+    {
       "id": "shades-of-june",
       "title": "Shades of June",
       "date": "2026-05-29",
       "type": "single",
       "label": "TSR",
-      "newest": true,
       "tracks": [
         { "title": "Shades of June", "spotifyId": "10lEGi5cFKnbk0cnvB0dfz" }
       ]
