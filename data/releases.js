@@ -3,12 +3,24 @@ const RELEASES_DATA = {
   "artistId": "61qSGQsnPa7ojcI75q32KX",
   "releases": [
     {
+      "id": "crush",
+      "title": "CRuSH",
+      "date": "2026-09-04",
+      "type": "single",
+      "label": "SVR",
+      "collab": "Sebastian Henkelmann",
+      "collab_label": "with Sebastian Henkelmann",
+      "newest": true,
+      "tracks": [
+        { "title": "CRuSH", "spotifyId": "3zM4rL71yDQNGbKyxO1o1v" }
+      ]
+    },
+    {
       "id": "light-years-away",
       "title": "Light Years Away",
       "date": "2026-07-10",
       "type": "single",
       "label": "SVR/TSR",
-      "newest": true,
       "coverHash": "412852c80aa2c7d2eedd45ff",
       "tracks": [
         { "title": "Light Years Away", "spotifyId": "2WDxHsW5OqJEyEC5ZfjJQG" }
