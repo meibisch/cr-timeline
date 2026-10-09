@@ -3,6 +3,18 @@ const RELEASES_DATA = {
   "artistId": "61qSGQsnPa7ojcI75q32KX",
   "releases": [
     {
+      "id": "the-widest-view",
+      "title": "The Widest View",
+      "date": "2026-10-09",
+      "type": "single",
+      "label": "TSR",
+      "newest": true,
+      "coverHash": "659ae37cfc89510eeecdbeca",
+      "tracks": [
+        { "title": "The Widest View", "spotifyId": "4VqoYaPQqxomZUWv6Jvt10" }
+      ]
+    },
+    {
       "id": "crush",
       "title": "CRuSH",
       "date": "2026-09-04",
@@ -10,7 +22,6 @@ const RELEASES_DATA = {
       "label": "SVR",
       "collab": "Sebastian Henkelmann",
       "collab_label": "with Sebastian Henkelmann",
-      "newest": true,
       "tracks": [
         { "title": "CRuSH", "spotifyId": "3zM4rL71yDQNGbKyxO1o1v" }
       ]
